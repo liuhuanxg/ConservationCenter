@@ -1,0 +1,13 @@
+.DS_Store
+*/.DS_Store
+*.log
+*.pot
+*.xml
+*.pyc
+*/__pycache__/
+*/__pycache__/*.pyc
+*/migrations/00*.py
+*/migrations/__pycache__/*.py
+.idea/
+venv/
+resource_plus/config.py
