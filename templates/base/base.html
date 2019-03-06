@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 新乡小动物保护网 </title>
+    {% block title %}
+    {% endblock %}
+   <style>
+        body{background: #f1f8ed}
+        .nav{height: 50px;width: 1200px;margin: auto;}
+        .nav ul{display: flex;justify-content: space-between;padding: 0 10px;}
+        .nav li{font: 20px/50px "微软雅黑";color: #1D602C;width: 100px;text-align: center;}
+        .nav li div{display: none;}
+        .nav li:hover{background: #67b168;}
+        .nav li:hover a{background: #67b168;color: white}
+        .nav li:hover div{display: block;}
+        .det{position: absolute;top: 48px;width: 100px;height: 100px;z-index: 99}
+        .det p{font: 17px/40px "微软雅黑";color: white;background: #67b168;}
+        .head-wrap{margin: auto;height: 100px; width: 100%;background: #1D602C;}
+        .logo{height: 100px;width: 1200px;padding-top: 20px;box-sizing: border-box;
+        background-image: url("{% static 'images/logo.png' %}"); background-repeat:no-repeat}
+
+    </style>
+
+</head>
+<body>
+    <!-----------header----------->
+
+    <div class="head">
+    <div class="head-wrap">
+        <div class="logo">
+{#            <img src="{% static 'images/logo.png' %}">#}
+        </div>
+    </div>
+    </div>
+    <div class="nav">
+    <ul>
+        <li><a href="{% url 'index' %}" class="hover">首　　页</a></li>
+        <li style="position: relative">
+            <a href="javascript:;">爱心救助</a>
+            <div class="det" >
+                <p><a href="{% url 'adopt' %}">领养要求</a></p>
+                <p><a href="{% url 'adopt_center' %}">领养中心</a></p>
+                <p><a href="{% url 'map' %}">救助中心</a></p>
+            </div>
+        </li>
+        <li><a href="{% url 'about_us'%}">关于我们</a></li>
+
+        <li><a href="{% url 'news' %}">新闻动态</a></li>
+
+
+        <li><a href="{% url 'goods' %}">线上义卖</a></li>
+
+        <li><a href="{% url 'contribute' %}">我要捐赠</a></li>
+        <li><a href="#">志愿者中心</a></li>
+    </ul>
+</div>
+    <!-----------header_end----------->
+
+    <!-----------body----------->
+    {% block banner %}
+    {% endblock %}
+    <!-----------body   end----------->
+
+    <!-----------footer----------->
+    <div class="foot">
+    <div class="foot_m clearfix">
+        <div class="fl"><img src="{% static 'images/dllgo.png' %}"></div>
+        <div class="fr" >
+            <p> 服务热线：18238472760</p>
+            <p>微信公众号：jiujiu009</p>
+            <p>技术支持:河南科技学院 信息工程学院</p>
+            <p>All rights reserved.新乡市小动物保护中心 &nbsp;&nbsp;网站备案:豫ICP备11028609号-1</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

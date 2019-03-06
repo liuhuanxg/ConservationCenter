@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+<link href="../../static/css/css.css" rel="stylesheet" type="text/css">
+<link href="../../static/css/public.css" rel="stylesheet" type="text/css">
+<link href="../../static/css/head.css" rel="stylesheet" type="text/css">
+	<!--引用百度地图API-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=39szqY2IMuAxg7WlmbZ2C9RQ8rEYlDoD"></script>
+	<style type="text/css">
+		body{background: #f1f8ed}
+		.nav{height: 50px;background: white;}
+		.nav ul{width: 1200px;margin: auto;display: flex;justify-content: space-between;padding: 0 10px;}
+		.nav li{font: 20px/50px "微软雅黑";color: #1D602C;width: 100px;text-align: center;}
+		.nav li div{display: none;}
+		.nav li:hover{background: #67b168;}
+		.nav li:hover a{background: #67b168;color: white}
+		.nav li:hover div{display: block;}
+		.det{position: absolute;top: 48px;width: 100px;height: 100px;z-index: 99}
+		.det p{font: 17px/40px "微软雅黑";color: white;background: #67b168;}
+
+	</style>
+{% endblock %}
+
+{% block banner %}
+<!-----------header_end----------->   
+<div style="width:100%; height:40px;"></div>
+
+<div class="main clearfix">
+<div class="main_h1"><img src="../../static/images/xxx7.png"></div>
+<div class="main_cont"><p style="text-align:center;">
+	<span style="color:#333333;font-family:Microsoft YaHei;font-size:14px;">新乡市小动物保护中心是新乡市首家合法注册的市级流浪伴侣动物救助网站。
+		我们致力于发展成为“致力于改善流浪动物生活现状，宣传最新的动物保护理念，以领养代替购买，
+		以绝育代替捕杀，素食护生”为宗旨的流浪动物保护机构。</span>
+</p>
+<p style="text-align:center;">
+	<span style="font-family:Microsoft YaHei;font-size:14px;">在这个网站，我们会以图片，文本，视频等方式提供真实的动物信息。</span>
+</p>
+<p style="text-align:center;" align="left">
+	<span style="font-family:Microsoft YaHei;font-size:14px;">本网站提供在线客服咨询，实现对领养人的有效服务。</span>
+</p>
+<p style="text-align:center;" align="left">
+	<span style="font-family:Microsoft YaHei;font-size:14px;">在这里，您可以提供一些动物的基本信息，我们将会帮助您寻找它的下一个主人。</span>
+</p>
+<p style="text-align:center;" align="left">
+	<span style="font-family:Microsoft YaHei;font-size:14px;">2018年开展动保同伴帮扶计划，在河南省内做一线救助流浪动物的个人和救助机构。</span>
+</p>
+<p style="text-align:center;" align="left">
+	<br>
+<span style="font-family:Microsoft YaHei;font-size:14px;"> 志愿者们以关心爱护流浪动物为宗旨，不求任何回报，但求小动物们能有个快乐温暖的家。</span>
+</p></div>
+<div class="main_img"><img src="../../static/images/gougou.png"></div>
+</div>
+
+<div style="width:100%; height:33px;"></div>
+{% endblock %}

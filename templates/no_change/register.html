@@ -1,0 +1,46 @@
+<!--登录页面-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap-theme.min.css">
+    <script src="../../static/js/jquery-1.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <style>
+        *{padding: 0;margin: 0}
+        html{height: 100%}
+        body{height: 100%}
+        .wrap{background: url("../../static/images/resg-bg.gif");height:100% ;padding-top: 150px}
+        .cont{width: 400px;height: 340px;box-sizing: border-box; padding: 40px;margin: auto;background: white;border-radius: 10px}
+        .cont button{display: block;width: 150px;margin: auto;margin-top: 20px;background: #5b98d1;color: white;font-size: 18px;font-family: 微软雅黑}
+        .cont .code input{display: inline-block; width: 140px;height: 40px}
+        .cont .code p{position: absolute;margin-left: 20px; display: inline-block;width: 140px;height: 40px;border: 1px solid lightsteelblue; border-radius: 7px;padding: 5px 10px;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <img src="../../static/images/res-log.png" alt="" style="display: block;margin: auto;margin-bottom: 20px">
+    <div class="cont">
+        <form action="" role="form">
+            <div class="form-group">
+                <label>用户名</label>
+                <input type="text" class="form-control" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input type="password" class="form-control" placeholder="请输入密码">
+            </div>
+            <div class="form-group code">
+                <input type="password" class="form-control" placeholder="请输入验证码">
+                <p></p>
+                <a href="javascript:;" style="display: block;margin-left: 180px">看不清？换一张</a>
+            </div>
+            <button class="btn">登录</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

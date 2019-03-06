@@ -1,0 +1,147 @@
+{% extends 'base/base.html' %}
+{% load static %}
+<!--首页-->
+{% block title %}
+<link href="{% static 'css/public.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css">
+<script src="{% static 'js/jquery-1.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery.js' %}" type="text/javascript"></script>
+ {% endblock %}
+{% block banner %}
+    <div class="banner">
+      <div id="slideBox" class="slideBox">
+        <div class="jok">
+          <div class="hd">
+            <ul>
+              <li class="on"></li>
+              <li class=""></li>
+              <li class=""></li>
+            </ul>
+          </div>
+        </div>
+        <div class="bd">
+          <ul>
+            <li class="li_1" style="display: list-item; opacity: 0.765744;"><a href="#"></a></li>
+            <li class="li_2" style="display: none;"><a href="#"></a></li>
+            <li class="li_3" style="display: none;"><a href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+      <script type="text/javascript">
+        jQuery(".slideBox").slide({ mainCell: ".bd ul", autoPlay: true });
+      </script>
+    </div>
+
+
+    <div class="index_ma clearfix" style=" margin-top:30px;">
+      <div class="ma_zuo">
+        <b><img src="{% static 'images/xhjs.png' %}"></b>
+        <a href="{% url 'about_us' %}">more&gt;&gt;</a>
+      </div>
+      <div class="ma_you">
+        <b><img src="{% static 'images/xhdt.png' %}"></b>
+        <a href="{% url 'news' %}">more&gt;&gt;</a>
+      </div>
+    </div>
+
+    <div class="index_mb clearfix">
+      <div class="fl">
+        <a href="{% url 'about_us' %}"><img src="{% static 'images/tup1.png' %}" style=" width:205px; height:286px;"></a>
+      </div>
+      <div class="mb_jj">
+        <p>新乡市小动物保护中心是新乡市首家市级流浪伴侣动物救助网站。</p>
+        <p>我们致力于发展成为“致力于改善流浪动物生活现状，宣传最新的动物保护理念，以领养代替购买，以绝育代替捕杀，素食护生”为宗旨的流浪动物保护机构。</p>
+        <p>2018年筹建的新乡市小动物保护中心，是新乡市首家非盈利性的保护流浪小动物的公益组织。</p>
+        <p>2019年3月完成新乡市小动物保护中户的网站搭建</p>
+        <p>我们2019年的计划：</p>
+        <p>（1）、开展进入学校和社区做动物保护宣讲活动。</p>
+        <p>（2）、开展流浪猫Cute项目，以“绝育代替捕杀”帮助社区流浪猫。</p>
+        <p>（3）、开展动保同伴帮扶计划，帮助新乡市做一线救助流浪动物的个人和救助机构。</p>
+      </div>
+
+      <div class="mb_yy">
+        <ul>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-463.html">被捕兽夹夹断腿筋、前腿骨断裂的猫…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-462.html">冬去春来 我们对你的思念更甚从前…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-461.html">从全身溃烂恶臭的流浪狗狗到长发飘…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-460.html">相约最美三月天 | 第53届福州领养…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-459.html">2000斤爱心狗粮送达到救助人任阿姨…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-458.html">五月领养好时节 | 第55届福州领养…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-457.html">学霸犬豆丁想租个主人一起过年</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-456.html">人生苦短，庸庸碌碌不过百年，总要…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-455.html">了解生活 懂得关爱——素馨小动物…</a><b>[2018-05-21]</b>
+          </li>
+          <li class="clearfix">
+            <a href="http://www.fjsapa.com/news/show-454.html">你在剁手 我在撸狗 | 双十二义工日…</a><b>[2018-05-21]</b>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="index_ma" style=" margin-bottom:17px;">
+      <b><img src="{% static 'images/ryfs.png' %}"></b>
+    </div>
+
+    <div class="index_mc">
+      <img src="{% static 'images/c9.png' %}">
+    </div>
+
+    <div class="index_ma" style=" margin-bottom:16px;">
+      <b><img src="{% static 'images/axry.png' %}"></b><a href="{% url 'adopt_center'%}">more&gt;&gt;</a>
+    </div>
+    <div class="index_md">
+      <div id="neiye_demo">
+        <div id="neiye_indemo">
+          <div id="neiye_demo1">
+              {% for animal in animal_list %}
+          <a href="{% url 'detail' animal.id%}"><img src="{% static animal.image.url  %} "><b>{{ animal.name }}</b></a>
+                {% endfor %}
+        </div>
+          <div id="neiye_demo2">
+              {% for animal in animal_list %}
+          <a href="{% url 'detail' animal.id%}"><img src="{% static animal.image.url  %}  "><b>{{ animal.name }}</b></a>
+                {% endfor %}
+          </div>
+        </div>
+    </div>
+    </div>
+    <script src="{% static 'js/bb.js' %}" type="text/javascript"></script>
+    <div class="index_ma" style=" margin-bottom:16px;">
+      <b><img src="{% static 'images/xsym.png' %}"></b><a href="{% url 'goods' %}">more&gt;&gt;</a>
+    </div>
+    <div class="index_md" style=" padding-bottom:45px;">
+        <div id="neiye_demo3">
+            <div id="neiye_indemo1">
+                <div id="neiye_demo4">
+                    {% for goods in goods_list %}
+                    <a href="{% url 'goods_detail' goods.id %}"><img src="{% static goods.image.url %}"><b>{{ goods.name }}</b></a>
+                    {% endfor %}
+                </div>
+                <div id="neiye_demo5">
+                {% for goods in goods_list %}
+                    <a href="{% url 'goods_detail' goods.id %}"><img src="{% static goods.image.url %}"><b>{{ goods.name }}</b></a>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bb1.js' %}" type="text/javascript"></script>
+
+{% endblock %}

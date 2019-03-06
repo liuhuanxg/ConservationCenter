@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+    <link href="{% static 'css/public.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <style>
+        body{background: #f1f8ed}
+        .nav{height: 50px;width: 1200px;margin: auto;}
+        .nav ul{display: flex;justify-content: space-between;padding: 0 10px;}
+        .nav li{font: 20px/50px "微软雅黑";color: #1D602C;width: 100px;text-align: center;}
+        .nav li div{display: none;}
+        .nav li:hover{background: #67b168;}
+        .nav li:hover a{background: #67b168;color: white}
+        .nav li:hover div{display: block;}
+        .det{position: absolute;top: 48px;width: 100px;height: 100px;z-index: 99}
+        .det p{font: 17px/40px "微软雅黑";color: white;background: #67b168;}
+        .wrap{width: 100%;height: 100%;background-color: #f1f8ed;padding-top: 30px}
+        .cont{width: 1200px;padding: 30px 30px;margin: auto;background: white}
+        .cont li{border: 2px solid #b2dba1;margin-bottom: 20px;padding: 20px}
+        .cont .img{float: left;margin-right: 30px}
+        .cont .infor{float: left}
+        .cont .infor p{font: 16px/26px "微软雅黑";color: black}
+        .cont .infor span{font: 17px/26px "微软雅黑";color: #1D602C;}
+        .cont .apply{width: 100px;background: #67b168;color: white;margin: 100px 0 0 60px;}
+    </style>
+{% endblock %}
+{% block banner %}
+<!--小动物详细信息-->
+<div class="wrap">
+    <div class="cont">
+        <ul>
+            <li>
+                <p class="img"><img src="{% static animal.image.url%}" alt=""></p>
+                <div class="infor">
+                    <p>姓名：<span>{{ animal.name }}</span></p>
+                    <p>品种：<span>{{ animal.type }}</span></p>
+                    <p>年龄：<span>{{ animal.age }}</span></p>
+                    <p>性别：<span>{{ animal.sex }}</span></p>
+                    <p>信息：<span>{{ animal.message }}</span></p>
+                </div>
+                <a href="{% url 'apply_adopt' %}"><button class="btn apply">申请领养</button></a>
+                <div class="clearfix"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
