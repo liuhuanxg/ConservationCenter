@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Animals,Goods,News
+from .models import Animals,Goods,News,Adoption
 
 @admin.register(Animals)
 class AnimalsAdmin(admin.ModelAdmin):
@@ -17,6 +17,11 @@ class GoodsAdmin(admin.ModelAdmin):
 class NewsAdmin(admin.ModelAdmin):
 	list_display = ('title','modify_time')
 	search_fields = ('title','modify_time')
+
+@admin.register(Adoption)
+class AdoptionAdmin(admin.ModelAdmin):
+	list_display = ('name','sex','phone','address')
+	search_fields = ('name','sex','phone','address')
 
 admin.site.site_header='小动物保护中心'
 admin.site.site_title='小动物保护中心'

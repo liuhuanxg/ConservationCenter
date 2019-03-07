@@ -35,11 +35,26 @@ class Goods(models.Model):
 
 class News(models.Model):
 	class Meta:
-		verbose_name='新闻中心'
-		verbose_name_plural='新闻中心'
+		verbose_name='新闻动态'
+		verbose_name_plural='新闻动态'
 	title=models.CharField(max_length=30,verbose_name='标题')
 	image=models.ImageField(upload_to='news',verbose_name='图片')
 	content=models.TextField(verbose_name='内容')
 	modify_time = models.DateTimeField(auto_now_add=True, verbose_name=('添加时间'))
 	def __str__(self):
 		return self.title
+
+class Adoption(models.Model):
+	class Meta:
+		verbose_name='领养申请'
+		verbose_name_plural='领养申请'
+	name=models.CharField(max_length=30,verbose_name='姓名')
+	sex=models.CharField(max_length=30,verbose_name='性别')
+	phone=models.CharField(max_length=11,verbose_name='电话')
+	emal=models.CharField(max_length=30,verbose_name='邮箱')
+	address=models.CharField(max_length=100,verbose_name='现住址')
+	reason=models.TextField(verbose_name='申请原因')
+	reason_time = models.DateTimeField(auto_now_add=True, verbose_name=('申请时间'))
+	animal=models.ForeignKey(Animals,default=1,on_delete=models.DO_NOTHING,verbose_name='动物名称')
+	def __str__(self):
+		return self.name

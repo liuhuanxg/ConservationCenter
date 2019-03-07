@@ -11,5 +11,9 @@ urlpatterns = [
 	path('contribute/',views.contribute,name='contribute'),
 	path('detail/<int:id>',views.detail,name='detail'),
 	path('goods_detail/<int:id>',views.goods_detail,name='goods_detail'),
-	path('apply_adopt/',views.apply_adopt,name='apply_adopt'),
+	path('apply_adopt/<int:id>',views.apply_adopt,name='apply_adopt'),
+	path('login/',views.login,name='login'),
+	path('register/',views.register,name='register'),
+	path('do_apply_adopt/',views.do_apply_adopt,name='do_apply_adopt'),
+	path('new_detail/<int:id>',views.new_detail,name='new_detail'),
 ]

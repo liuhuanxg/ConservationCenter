@@ -15,114 +15,18 @@
     <div class="main clearfix" style=" padding-top:13px; padding-bottom:30px;">
         <div class="kiohh"><img src="../../static/images/xhdts.png"></div>
         <ul class="xinwend">
+            {% for news in news_list %}
             <li class="clearfix">
-                <b>2018-05-21</b>
+                <b>{{ news.modify_time }}</b>
                 <span>
-                    <a href="http://www.fjsapa.com/news/show-463.html">
-                    <p class="p1">被捕兽夹夹断腿筋、前腿骨断裂的猫咪“黄瓜”痛苦的哀嚎</p>
-                    <p>2018年4月27日下午6时分，素馨动保负责人素妈和往常一样每天到护生园照顾小动物们，在傍晚返程的途…</p>
+                    <a href="{% url 'new_detail' news.id %}">
+                    <p class="p1">{{ news.title }}</p>
+                    <p style="width: 600px;height:18px;overflow: hidden; text-overflow: ellipsis;white-space: nowrap;">{{ news.content }}</p>
                     </a></span>
-                <a href="http://www.fjsapa.com/news/show-463.html" class="tp"><img src="../../static/images/201805211517526124.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-463.html" class="ckxq">详情</a>
+                <a href="{% url 'new_detail' news.id %}" class="tp"><img src="{% static news.image.url %}"></a>
+                <a href="{% url 'new_detail' news.id %}" class="ckxq">详情</a>
             </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-462.html">
-                    <p class="p1">冬去春来 我们对你的思念更甚从前 | 4.21护生园义工日志合集</p>
-                    <p>冬去春来我们对你的思念更甚从前——————————————2018.04.21福建省素馨保护中心的小动…</p>
-                    </a></span>
-                <a href="http://www.fjsapa.com/news/show-462.html" class="tp"><img src="../../static/images/201805211509173154.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-462.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-461.html">
-                    <p class="p1">从全身溃烂恶臭的流浪狗狗到长发飘飘领养回家的“喜喜”变形记 | 账目公开</p>
-                    <p>2018年2月份，一个小姐姐无意间看到领养一只像喜乐蒂犬的信息，知道它的坚强故事让她感动，她立马…</p>
-                    </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-461.html" class="tp"><img src="../../static/images/201805211459597375.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-461.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-460.html">
-                    <p class="p1">相约最美三月天 | 第53届福州领养日回顾</p>
-                    <p>迎着和煦的春风胸前的包养巾随风飘扬雄赳赳又气昂昂迈开步伐但求一人包养暨第53届福州领养日我们与…</p>
-                    </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-460.html" class="tp"><img src="../../static/images/201805211448225341.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-460.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-459.html">
-                    <p class="p1">2000斤爱心狗粮送达到救助人任阿姨小院 | 2018.4.14义工日志</p>
-                    <p>2018年4月14日，数学与信息学院恒心志愿者协会的志愿者们来到素馨小动物保护中心参加志愿者服务。…</p>
-                    </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-459.html" class="tp"><img src="../../static/images/201805211441521122.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-459.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-458.html">
-                    <p class="p1">五月领养好时节 | 第55届福州领养日回顾</p>
-                    <p>2018年5月5日及6日，第五十五届福州领养日在台江区中防万宝城与大家见面啦。那两天的汗水与欢欣即…</p>
-                    </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-458.html" class="tp"><img src="../../static/images/201805211429583154.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-458.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-457.html">
-                    <p class="p1">学霸犬豆丁想租个主人一起过年</p>
-                    <p>寒冬来了,春节也要来了,这里有个暖心的小故事,也有个暖心的小家伙,客官若是有兴趣,请轻啜一口暖茶…</p>
-                    </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-457.html" class="tp"><img src="../../static/images/201805211419334716.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-457.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                     <a href="http://www.fjsapa.com/news/show-456.html">
-                     <p class="p1">人生苦短，庸庸碌碌不过百年，总要有点不一样的色彩丨第50届福州领养日回顾</p>
-                     <p>2013年的9月第1届福州领养日举办转眼之间2017年的11月第50届福州领养日举办时隔近5年......不知不…</p>
-                     </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-456.html" class="tp"><img src="../../static/images/201805211411145810.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-456.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-455.html">
-                    <p class="p1">了解生活 懂得关爱——素馨小动物保护中心在海峡国际会展中心连续4天助力MAX无限嘉年华回顾</p>
-                    <p>连续4天助力MAX无限嘉年华义卖活动回顾 人生为花，爱为花蜜聆关爱之声，畅谈心口间蜜石头会发芽，…</p>
-                    </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-455.html" class="tp"><img src="../../static/images/201805211404598935.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-455.html" class="ckxq">详情</a>
-            </li>
-            <li class="clearfix">
-                <b>2018-05-21</b>
-                <span>
-                    <a href="http://www.fjsapa.com/news/show-454.html">
-                    <p class="p1">你在剁手 我在撸狗 | 双十二义工日志</p>
-                    <p>“汪汪汪！”“报告！发现入侵者！”刚踏进保护中心地界，侦查员“飞天精精”迅速发出警报。一时间…</p>
-                    </a>
-                </span>
-                <a href="http://www.fjsapa.com/news/show-454.html" class="tp"><img src="../../static/images/201805211357090497.jpg"></a>
-                <a href="http://www.fjsapa.com/news/show-454.html" class="ckxq">详情</a>
-            </li>
+            {% endfor %}
         </ul>
         <div style="width:100%; height:60px;"></div>
         <div class="scott" id="neirong">

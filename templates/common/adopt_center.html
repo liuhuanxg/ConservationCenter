@@ -14,11 +14,13 @@
 <div>
     <div class="xinwend2">
         <ul class="clearfix" style=" width:1140px;">
+            {% for animal in animal_list %}
             <li class="clearfix">
-                <a href="{% url 'detail' %}"><img src="../../static/images/201511090917439833.png"></a>
-                <b>笨笨</b>
-                <a href="animal_detail.html" class="ckxq">查看详情</a>
+                <a href="{% url 'detail' animal.id%}"><img src="{% static animal.image.url %}"></a>
+                <b>{{ animal.name }}</b>
+                <a href="{% url 'detail' animal.id%}" class="ckxq">查看详情</a>
             </li>
+            {% endfor %}
         </ul>
     </div>
 </div>

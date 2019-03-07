@@ -6,6 +6,9 @@
 <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css">
 <script src="{% static 'js/jquery-1.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/jquery.js' %}" type="text/javascript"></script>
+    <style>
+    .news_center{width: 250px;height:14px;overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
+    </style>
  {% endblock %}
 {% block banner %}
     <div class="banner">
@@ -31,8 +34,6 @@
         jQuery(".slideBox").slide({ mainCell: ".bd ul", autoPlay: true });
       </script>
     </div>
-
-
     <div class="index_ma clearfix" style=" margin-top:30px;">
       <div class="ma_zuo">
         <b><img src="{% static 'images/xhjs.png' %}"></b>
@@ -61,36 +62,12 @@
 
       <div class="mb_yy">
         <ul>
+            {% for news in news_list %}
           <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-463.html">被捕兽夹夹断腿筋、前腿骨断裂的猫…</a><b>[2018-05-21]</b>
+            <a class="news_center" href="{% url 'new_detail' news.id%}" title="{{ news.title }}" >{{ news.title }}</a><b>[{{ news.modify_time }}]</b>
           </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-462.html">冬去春来 我们对你的思念更甚从前…</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-461.html">从全身溃烂恶臭的流浪狗狗到长发飘…</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-460.html">相约最美三月天 | 第53届福州领养…</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-459.html">2000斤爱心狗粮送达到救助人任阿姨…</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-458.html">五月领养好时节 | 第55届福州领养…</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-457.html">学霸犬豆丁想租个主人一起过年</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-456.html">人生苦短，庸庸碌碌不过百年，总要…</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-455.html">了解生活 懂得关爱——素馨小动物…</a><b>[2018-05-21]</b>
-          </li>
-          <li class="clearfix">
-            <a href="http://www.fjsapa.com/news/show-454.html">你在剁手 我在撸狗 | 双十二义工日…</a><b>[2018-05-21]</b>
-          </li>
+            {% endfor %}
+
         </ul>
       </div>
 
@@ -103,7 +80,6 @@
     <div class="index_mc">
       <img src="{% static 'images/c9.png' %}">
     </div>
-
     <div class="index_ma" style=" margin-bottom:16px;">
       <b><img src="{% static 'images/axry.png' %}"></b><a href="{% url 'adopt_center'%}">more&gt;&gt;</a>
     </div>
@@ -142,6 +118,6 @@
             </div>
         </div>
     </div>
+    </div>
     <script src="{% static 'js/bb1.js' %}" type="text/javascript"></script>
-
 {% endblock %}

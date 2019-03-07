@@ -40,7 +40,7 @@
                     <p>性别：<span>{{ animal.sex }}</span></p>
                     <p>信息：<span>{{ animal.message }}</span></p>
                 </div>
-                <a href="{% url 'apply_adopt' %}"><button class="btn apply">申请领养</button></a>
+                <a href="{% url 'apply_adopt' animal.id%}"><button class="btn apply">申请领养</button></a>
                 <div class="clearfix"></div>
             </li>
         </ul>
