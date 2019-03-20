@@ -58,3 +58,9 @@ class Adoption(models.Model):
 	animal=models.ForeignKey(Animals,default=1,on_delete=models.DO_NOTHING,verbose_name='动物名称')
 	def __str__(self):
 		return self.name
+
+class User(models.Model):
+	name=models.CharField('用户名',max_length=30,unique=True)
+	password=models.CharField('密码',max_length=32)
+	def __str__(self):
+		return self.name

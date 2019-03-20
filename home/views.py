@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from  .models import Animals,Goods,News,Adoption
+from  .models import Animals,Goods,News,Adoption,User
 from django.http import Http404,HttpResponse,HttpResponseRedirect
 
-# Create your views here.
+
 #首页
 def index(request):
 	animal_list=Animals.objects.all().exclude(is_activate=1)
@@ -68,7 +68,13 @@ def goods_detail(request,id):
 
 #领养申请
 def apply_adopt(request,id):
-	return render(request,'common/apply_adopt.html',{'id':id})
+	try:
+		user=request.session['name']
+		id=request.session['id']
+		print(user,id)
+		return render(request,'common/apply_adopt.html',{'id':id})
+	except:
+		return HttpResponseRedirect('/login')
 
 #新闻细节
 def new_detail(request,id):
@@ -81,27 +87,53 @@ def new_detail(request,id):
 
 #登陆页面
 def login(request):
+	if request.method=='POST':
+		name = request.POST.get('name')
+		password = request.POST.get('password')
+		u=User.objects.filter(name=name,password=password)
+		if u.exists():
+			u=u[0]
+			request.session['id']=u.id
+			request.session['name']=u.name
+			next=request.GET.get('next')
+			if next:
+				return HttpResponseRedirect(next)
+			return HttpResponseRedirect('/')
 	return render(request,'common/login.html')
 
 #注册页面
 def register(request):
+	if request.method=='POST':
+		name=request.POST.get('name')
+		password=request.POST.get('password')
+		try:
+			u=User(name=name,password=password)
+			u.save()
+			return HttpResponseRedirect('/login')
+		except:
+			raise Http404
 	return render(request,'common/register.html')
 
 #申请领养信息提交
 def do_apply_adopt(request):
 	if request.method=='POST':
-		id=request.POST.get('id')
-		animal=Animals.objects.filter(id=id,is_activate=1)
-		if animal.exists():
-			return HttpResponse('抱歉，该动物已被领养。')
-		name=request.POST.get('name')
-		sex=request.POST.get('sex')
-		phone=request.POST.get('phone')
-		emal=request.POST.get('emal')
-		address=request.POST.get('address')
-		reason=request.POST.get('reason')
-		adopt=Adoption(name=name,sex=sex,phone=phone,emal=emal,address=address,reason=reason,animal_id=id)
-		adopt.save()
-		return HttpResponseRedirect('/')
+		try:
+			user = request.session['name']
+			user_id = request.session['id']
+			id=request.POST.get('id')
+			animal=Animals.objects.filter(id=id,is_activate=1)
+			if animal.exists():
+				return HttpResponse('抱歉，该动物已被领养。')
+			name=request.POST.get('name')
+			sex=request.POST.get('sex')
+			phone=request.POST.get('phone')
+			emal=request.POST.get('emal')
+			address=request.POST.get('address')
+			reason=request.POST.get('reason')
+			adopt=Adoption(name=name,sex=sex,phone=phone,emal=emal,address=address,reason=reason,animal_id=id)
+			adopt.save()
+			return HttpResponseRedirect('/')
+		except:
+			return HttpResponseRedirect('/login')
 	else:
 		return HttpResponse('Please send by post！')
