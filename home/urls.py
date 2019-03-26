@@ -16,4 +16,6 @@ urlpatterns = [
 	path('register/',views.register,name='register'),
 	path('do_apply_adopt/',views.do_apply_adopt,name='do_apply_adopt'),
 	path('new_detail/<int:id>',views.new_detail,name='new_detail'),
+	path('volunteer/',views.volunteer,name='volunteer'),
+	path('do_volunteer/',views.do_volunter,name='do_volunteer'),
 ]

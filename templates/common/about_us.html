@@ -1,9 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block title %}
-<link href="../../static/css/css.css" rel="stylesheet" type="text/css">
-<link href="../../static/css/public.css" rel="stylesheet" type="text/css">
-<link href="../../static/css/head.css" rel="stylesheet" type="text/css">
+<link href="{% static 'css/css.css'%}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/public.css'%}" rel="stylesheet" type="text/css">
 	<!--引用百度地图API-->
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=39szqY2IMuAxg7WlmbZ2C9RQ8rEYlDoD"></script>
 	<style type="text/css">
@@ -26,7 +25,7 @@
 <div style="width:100%; height:40px;"></div>
 
 <div class="main clearfix">
-<div class="main_h1"><img src="../../static/images/xxx7.png"></div>
+<div class="main_h1"><img src="{% static ''%}images/xxx7.png"></div>
 <div class="main_cont"><p style="text-align:center;">
 	<span style="color:#333333;font-family:Microsoft YaHei;font-size:14px;">新乡市小动物保护中心是新乡市首家合法注册的市级流浪伴侣动物救助网站。
 		我们致力于发展成为“致力于改善流浪动物生活现状，宣传最新的动物保护理念，以领养代替购买，
@@ -48,7 +47,7 @@
 	<br>
 <span style="font-family:Microsoft YaHei;font-size:14px;"> 志愿者们以关心爱护流浪动物为宗旨，不求任何回报，但求小动物们能有个快乐温暖的家。</span>
 </p></div>
-<div class="main_img"><img src="../../static/images/gougou.png"></div>
+<div class="main_img"><img src="{% static ''%}images/gougou.png"></div>
 </div>
 
 <div style="width:100%; height:33px;"></div>

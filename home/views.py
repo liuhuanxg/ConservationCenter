@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from  .models import Animals,Goods,News,Adoption,User
+from  .models import Animals,Goods,News,Adoption,User,Volunteer
 from django.http import Http404,HttpResponse,HttpResponseRedirect
 
 
@@ -137,3 +137,18 @@ def do_apply_adopt(request):
 			return HttpResponseRedirect('/login')
 	else:
 		return HttpResponse('Please send by post！')
+
+#志愿者申请
+def volunteer(request):
+	return render(request,'common/volunteer.html')
+
+def do_volunter(request):
+	name = request.POST.get('name')
+	sex = request.POST.get('sex')
+	phone = request.POST.get('phone')
+	time = request.POST.get('time')
+	address = request.POST.get('address')
+	reason = request.POST.get('reason')
+	v = Volunteer(name=name, sex=sex, phone=phone, time=time, address=address, reason=reason)
+	v.save()
+	return HttpResponseRedirect('/')
