@@ -18,4 +18,7 @@ urlpatterns = [
 	path('new_detail/<int:id>',views.new_detail,name='new_detail'),
 	path('volunteer/',views.volunteer,name='volunteer'),
 	path('do_volunteer/',views.do_volunter,name='do_volunteer'),
+	path('pay_goods/',views.pay_goods,name='pay_goods'),
+	path('do_pay_goods/',views.do_pay_goods,name='do_pay_goods'),
+	path('return_url/',views.return_url,name='return_url'),
 ]

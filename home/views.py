@@ -1,7 +1,20 @@
 from django.shortcuts import render
-from  .models import Animals,Goods,News,Adoption,User,Volunteer
+from  .models import Animals,Goods,News,Adoption,User,Volunteer,Orders
 from django.http import Http404,HttpResponse,HttpResponseRedirect
+import time
+from django.shortcuts import reverse ,HttpResponseRedirect
+from alipay.aop.api.AlipayClientConfig import AlipayClientConfig
+from alipay.aop.api.DefaultAlipayClient import DefaultAlipayClient
+from alipay.aop.api.domain.AlipayTradePagePayModel import AlipayTradePagePayModel
+from alipay.aop.api.request.AlipayTradePagePayRequest import AlipayTradePagePayRequest
 
+def check_user(func):
+	def inner(request,*args,**kwargs):
+		if request.session.get('name'):
+			return func(request,*args,**kwargs)
+		else:
+			return HttpResponseRedirect(reverse('login'))
+	return inner
 
 #首页
 def index(request):
@@ -13,8 +26,8 @@ def index(request):
 		goods_list = goods_list[0:5]
 	news_list = News.objects.all()
 	return render(request,'common/index.html',{'animal_list':animal_list,
-	                                           'goods_list':goods_list,
-	                                           'news_list':news_list})
+											   'goods_list':goods_list,
+											   'news_list':news_list})
 
 #领养要求
 def adopt(request):
@@ -36,7 +49,6 @@ def about_us(request):
 #新闻动态
 def news(request):
 	news_list=News.objects.all()
-	print(news_list)
 	return render(request, 'common/news.html',{'news_list':news_list})
 
 #线上义卖
@@ -67,14 +79,11 @@ def goods_detail(request,id):
 		raise Http404
 
 #领养申请
+@check_user
 def apply_adopt(request,id):
-	try:
-		user=request.session['name']
-		id=request.session['id']
-		print(user,id)
-		return render(request,'common/apply_adopt.html',{'id':id})
-	except:
-		return HttpResponseRedirect('/login')
+	id=request.session['id']
+	return render(request,'common/apply_adopt.html',{'id':id})
+
 
 #新闻细节
 def new_detail(request,id):
@@ -115,26 +124,22 @@ def register(request):
 	return render(request,'common/register.html')
 
 #申请领养信息提交
+@check_user
 def do_apply_adopt(request):
 	if request.method=='POST':
-		try:
-			user = request.session['name']
-			user_id = request.session['id']
-			id=request.POST.get('id')
-			animal=Animals.objects.filter(id=id,is_activate=1)
-			if animal.exists():
-				return HttpResponse('抱歉，该动物已被领养。')
-			name=request.POST.get('name')
-			sex=request.POST.get('sex')
-			phone=request.POST.get('phone')
-			emal=request.POST.get('emal')
-			address=request.POST.get('address')
-			reason=request.POST.get('reason')
-			adopt=Adoption(name=name,sex=sex,phone=phone,emal=emal,address=address,reason=reason,animal_id=id)
-			adopt.save()
-			return HttpResponseRedirect('/')
-		except:
-			return HttpResponseRedirect('/login')
+		id=request.POST.get('id')
+		animal=Animals.objects.filter(id=id,is_activate=1)
+		if animal.exists():
+			return HttpResponse('抱歉，该动物已被领养。')
+		name=request.POST.get('name')
+		sex=request.POST.get('sex')
+		phone=request.POST.get('phone')
+		emal=request.POST.get('emal')
+		address=request.POST.get('address')
+		reason=request.POST.get('reason')
+		adopt=Adoption(name=name,sex=sex,phone=phone,emal=emal,address=address,reason=reason,animal_id=id)
+		adopt.save()
+		return HttpResponseRedirect('/')
 	else:
 		return HttpResponse('Please send by post！')
 
@@ -151,4 +156,54 @@ def do_volunter(request):
 	reason = request.POST.get('reason')
 	v = Volunteer(name=name, sex=sex, phone=phone, time=time, address=address, reason=reason)
 	v.save()
+	return HttpResponseRedirect('/')
+
+@check_user
+def pay_goods(request):
+	g_id=request.GET.get('g_id')
+	return render(request,'common/pay_goods.html',{'g_id':g_id})
+
+@check_user
+def do_pay_goods(request):
+	user_id=request.session.get('id')
+	id=request.POST.get('id')
+	name=request.POST.get('name')
+	phone=request.POST.get('phone')
+	address=request.POST.get('address')
+	t = str(time.time()).split('.')
+	order = t[0] + t[1]
+	goods=Goods.objects.filter(id=id,is_activate=0)
+	if not goods.exists():
+		return HttpResponse('该商品已被购买。')
+	goods=goods[0]
+	goods.is_activate=1
+	goods.save()
+	o=Orders(order=order,address=address,phone=phone,name=name,goods_id=id,user_id=user_id)
+	o.save()
+	money=goods.price
+	alipay_client_config = AlipayClientConfig()
+	alipay_client_config.server_url = 'https://openapi.alipaydev.com/gateway.do'
+	alipay_client_config.app_id = '2016092100561600'
+	alipay_client_config.app_private_key = 'MIIEpQIBAAKCAQEAxr2mbz2s8RigfJPxqYFht3hjtbEY9k/7C5BNvATGJRXSpI+9XmSCHG58OnYoZvYLgQoSLKRrE/z7ZeDL8gCVRuLWmEUHRYGEeBQ3IraaHqfHewP39yyoZ3M0Z9gIoK+yRIsgMcK4vdYwQGaw+MRypIEmqIC+AUeWOStYVDzK/TtcJPq8NZN+Gc2hzm94NE4F1fE+OFXVDPmoKJyljRsD2NYRz2iV6nuvRZ4inU31lpy6wNWwgqAZi6tIKMr1ElOFWH59ReCtkTyY0N2u4Z2TopiZgpCnZ3tQAoSEOslyefIH4w/I/dm2zxH3FF7bRuEp5jkueem5gfzmarGRClNp0wIDAQABAoIBABTfaDJ4tMghgQF0fEYEK6IcR8SWU/vSjJg7UJ61laXhc90Kp6XZQnz/8ZYmQLoHj0+/IgeEQSa5RCIACQtimkr2mfkmDsxy/Nmrrdq8eNVNY7r8wLc5/nnW9KMPYmCV81AVmI0BWWu+qhSpdF68Kxox4kCCPPJfdVyNu9olBGCyAtPKp2J/+lD/qCG9uxo7ltT5L4nsoR9gciLqce4B4VImHroUatDcOrDeMniRhNHkNa2YRkV4ddncAHtexAjA8yesTO1bO1D/TyLOHRnNElTBSDJbJaVzifgHM0OmcJUhgdbjJhGEUh+/atMjHLmMiZxEwoUsn4Ctcb8/NT541CECgYEA8Ao8+LIYzydlmaV4ns7GmclkfDXp3ZzVUeoQLCPGQtVeSZjiwIeB4G0bcO3d4JA0c1g5dfYJUA7YhOaOcQzMkkUnJu7oMBX2STYohX2012AdZPUz1/UWnckt5zvZoRYK0KjVQ06zLo2gWuk+dr+KVYQB1XRh777QxLhXK19V8LECgYEA0/RzoZ/+KvMTrFDEFiJep/I3avk6kohx8JUJyJQlus0cxnUdBv3rp3RkElJYCnvvtwhILWRuMovRTKxgUU7fXGIZY3HH7Zw0V3wpsOzPefNsVHCsg9kmpHqIEbabdJKAtnNIginMgEs0l5K2LKPbRK1CETRG3GwRcsoCdFV7A8MCgYEAyWB9eFLJd3jgxr7Ia8qjWL9ZOs9sLMx3Nip8eNtmaAli+bF2gfjs36AJRnt4Cf5Q0newdSL8+xoJUa2u0G7hbNDxILuLNVQnc5Io+pzUS1/KKTmAzetClwsBJJ3UXU0Fs7oAeGAc+LA+WCaXjb3xSv7dHvttclmOAYt5LdzkV3ECgYEAqkr6aH4yaPGZ+dV+ZkZBBPDAA8uwerDz0pb8IFKfKcHIf87yfn6eypDiIjJUmD/Rbp5R116chzH8/Hx2en1DSmdq/JIbTtY026Ffoc3yOIoSnJlWkixzNq1YC9tKdVOL5IslU6cfrmg+HhX7FkykTD5kGYyF7m1Ja4/QfwV6658CgYEAq/YNAIzrLkQxQeyS26bbCf7+FT6jLGmKgxyReODIOPKk7S+vaZWbyHX14AW9cDBeOfsiIQobfkIHMRJtVqe5TC49lHh08zAX610SvXSzIkpeTIMfUVKwhr0xfOqCMSEHKNG6mGbTie0AvhGCHYl2ptAWZot9ugNcgwdTu43Nyag='
+	alipay_client_config.alipay_public_key ='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8OsmAJsaykPLzLIN//XnymU4s13kPE95EyOvZFq8TMPKJtsQ/f7eQB72wYAi3NarGT7RwebfJoAyeaM0KJsYNFqAodVHwpPRSemj8mwBtzEGGSyOT4Ilbv4KOz+HAsOkaLuQQ2ZGD1m7CCrgZCtxJDVqbd4xigSgMwrTFZYywoT0Sswv0oPV2TMl1tg+F7VUuvQpEvIn6qCQfzXa15eX9/P8OknvP9NSl3jOvDcpMliC2KvbfkNF9Qx9FEgtRlfnZdDItgmUj34VmBph+LUrAyV3lZjLpbFMhKlTBUeAbH72JPUKifXTXKsmbAl0n6cPaJQgb3zd+cfW7equoMhIEQIDAQAB'
+	client = DefaultAlipayClient(alipay_client_config=alipay_client_config)
+
+	model = AlipayTradePagePayModel()
+	model.out_trade_no = o.order
+	model.total_amount = money
+	model.subject = "小动物保护网站-" + goods.name
+	model.body = goods.name
+	model.product_code = "FAST_INSTANT_TRADE_PAY"
+	request = AlipayTradePagePayRequest(biz_model=model)
+	request.return_url = 'http://39.105.195.67:8000/return_url'
+	print('request:',request)
+	# 得到构造的请求，如果http_method是GET，则是一个带完成请求参数的url，如果http_method是POST，则是一段HTML表单片段
+	response = client.page_execute(request, http_method="GET")
+	print('response:',response)
+	return HttpResponseRedirect(response)
+
+def return_url(request):
+	order=request.GET.get('out_trade_no')
+	result=Orders.objects.filter(order=order).update(is_pay=1)
+	print('result:',result)
 	return HttpResponseRedirect('/')

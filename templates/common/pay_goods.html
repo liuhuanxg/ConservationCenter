@@ -26,33 +26,21 @@
 {% block banner %}
     <div class="wrap">
         <div class="cont">
-            <h3>请填写领养表格</h3>
-            <form action="{% url 'do_apply_adopt'%}" role="form" method="post">
+            <h3>请填写收货人地址</h3>
+            <form action="{% url 'do_pay_goods' %}" role="form" method="post">
                 {% csrf_token %}
-                    <input type="hidden" class="form-control" name="id" value="{{ id }}">
+                    <input type="hidden" class="form-control" name="id" value="{{ g_id }}">
                 <div class="form-group">
                     <label>姓名 <span>*</span></label>
                     <input type="text" class="form-control" name="name" required>
                 </div>
                  <div class="form-group">
-                    <label>性别 <span>*</span></label>
-                    <input type="text" class="form-control" name="sex" required>
-                </div>
-                <div class="form-group">
-                    <label >手机号  <span>*</span></label>
+                    <label>手机号 <span>*</span></label>
                     <input type="text" class="form-control" name="phone" required>
                 </div>
                 <div class="form-group">
-                    <label >邮箱  <span>*</span></label>
-                    <input type="text" class="form-control" name="emal" required>
-                </div>
-                <div class="form-group">
-                    <label >现居住地  <span>*</span></label>
+                    <label >地址  <span>*</span></label>
                     <input type="text" class="form-control" name="address" required>
-                </div>
-                <div class="form-group">
-                    <label >申请原因  <span>*</span></label>
-                    <textarea class="form-control" rows="3" name="reason" required></textarea>
                 </div>
                 <input class="btn btn-primary" type="submit" >
             </form>

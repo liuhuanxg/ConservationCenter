@@ -39,7 +39,7 @@
                     <p>位置：<span>{{ goods.address }}</span></p>
                     <p>信息：<span>{{ goods.message }}</span></p>
                 </div>
-                <a href="#"><button class="btn apply">立即购买</button></a>
+                <a href="{% url 'pay_goods' %}?g_id={{ goods.id }}"><button class="btn apply">立即购买</button></a>
                 <div class="clearfix"></div>
             </li>
         </ul>

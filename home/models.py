@@ -136,3 +136,56 @@ class Volunteer(models.Model):
 			)
 	colored_status.short_description = u'是否批准'
 
+class Orders(models.Model):
+	class Meta:
+		verbose_name='订单'
+		verbose_name_plural='订单'
+	order=models.CharField(max_length=20,unique=True,verbose_name='订单编号')
+	address=models.CharField(max_length=200,verbose_name='地址')
+	phone=models.CharField(max_length=20,verbose_name='电话')
+	name=models.CharField(max_length=100,verbose_name='姓名')
+	goods=models.ForeignKey(Goods,on_delete=models.DO_NOTHING,verbose_name='商品')
+	user=models.ForeignKey(User,on_delete=models.DO_NOTHING,verbose_name='买家')
+	is_send=models.BooleanField(default=0,verbose_name='是否发货')
+	is_save=models.BooleanField(default=0,verbose_name='是否收货')
+	is_pay=models.BooleanField(default=0,verbose_name='是否付款')
+	add_time=models.DateField(auto_now_add=True,verbose_name='创建时间')
+	def __str__(self):
+		return self.name
+	def colored_status(self):
+		if self.is_send == 0:
+			color_code = 'blue'
+			return format_html(
+				'<span style="color:{};">{}</span>', color_code, '尚未发货',
+			)
+		else:
+			color_code = 'green'
+			return format_html(
+				'<span style="color:{};">{}</span>', color_code, '已发货',
+			)
+	colored_status.short_description = u'是否发货'
+	def colored(self):
+		if self.is_save == 0:
+			color_code = 'blue'
+			return format_html(
+				'<span style="color:{};">{}</span>', color_code, '尚未收货',
+			)
+		else:
+			color_code = 'green'
+			return format_html(
+				'<span style="color:{};">{}</span>', color_code, '已收货',
+			)
+	colored.short_description = u'是否收货'
+
+	def pay(self):
+		if self.is_pay == 0:
+			color_code = 'blue'
+			return format_html(
+				'<span style="color:{};">{}</span>', color_code, '尚未付款',
+			)
+		else:
+			color_code = 'green'
+			return format_html(
+				'<span style="color:{};">{}</span>', color_code, '已付款',
+			)
+	pay.short_description = u'是否收货'
