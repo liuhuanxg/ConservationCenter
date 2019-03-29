@@ -10,5 +10,4 @@
 */migrations/__pycache__/*.py
 .idea/
 venv/
-resource_plus/config.py
 
