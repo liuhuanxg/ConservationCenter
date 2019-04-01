@@ -7,7 +7,20 @@ from alipay.aop.api.AlipayClientConfig import AlipayClientConfig
 from alipay.aop.api.DefaultAlipayClient import DefaultAlipayClient
 from alipay.aop.api.domain.AlipayTradePagePayModel import AlipayTradePagePayModel
 from alipay.aop.api.request.AlipayTradePagePayRequest import AlipayTradePagePayRequest
+from PIL import Image,ImageDraw,ImageFont
+from io import BytesIO
+import json
+import random
+import hashlib
 
+#加密
+def encryption(pwd):
+	md=hashlib.md5()
+	md.update(pwd.encode('utf-8'))
+	md5_pwd=md.hexdigest()
+	return md5_pwd
+
+#检测用户有没有登录
 def check_user(func):
 	def inner(request,*args,**kwargs):
 		if request.session.get('name'):
@@ -99,6 +112,7 @@ def login(request):
 	if request.method=='POST':
 		name = request.POST.get('name')
 		password = request.POST.get('password')
+		password = encryption(password)
 		u=User.objects.filter(name=name,password=password)
 		if u.exists():
 			u=u[0]
@@ -115,6 +129,7 @@ def register(request):
 	if request.method=='POST':
 		name=request.POST.get('name')
 		password=request.POST.get('password')
+		password=encryption(password)
 		try:
 			u=User(name=name,password=password)
 			u.save()
@@ -207,3 +222,58 @@ def return_url(request):
 	result=Orders.objects.filter(order=order).update(is_pay=1)
 	print('result:',result)
 	return HttpResponseRedirect('/')
+
+# 验证码
+def verify_code(request):
+	#1、创建画板（画布） 2、创建画笔   3、画相应的图片   4、保存图片并退出
+	img_color= (random.randint(0,255),random.randint(0,150),random.randint(0,255))
+	img = Image.new('RGB',(120,30),img_color)
+	draw=ImageDraw.Draw(img)
+	str='ABC1D2EF3GH4IJ5KL6MN70PQ8RS9TUV0WXYZ'  #候选字符串
+	font=ImageFont.truetype('simkai.ttf',28)   #字体字号
+	x,y=0,0
+	font_str=''
+	#生成验证码
+	for i in range(0,5):
+		#字体颜色
+		one_str=str[random.randint(0,len(str)-1)]
+		font_str+=one_str
+		color=(random.randint(0,255),random.randint(150,255),random.randint(0,255))
+		#横纵坐标   内容   颜色   字号
+		draw.text((x,y),one_str,fill=color,font=font)
+		x+=20
+
+	#画干扰点
+	for z in range(0,200):
+		point_color=(random.randint(0,255),random.randint(0,255),random.randint(0,255))
+		draw.point((random.randint(0,100),random.randint(0,25)),fill=point_color)
+
+	#画干扰线
+	draw.line(((20,15),(90,18)),fill=(0,0,0))
+	draw.line(((15,5),(100,22)),fill=(0,0,0))
+
+	io=BytesIO()
+	img.save(io,'png')   #保存图片
+	request.session['verify_code']=font_str.lower()    #将验证码存入session用于验证用户输入
+	return HttpResponse(io.getvalue(),'image/png')
+
+
+#检查验证码是否正确
+def checked_code(request):
+	verify_code=request.POST.get('verify_code','')
+	verify_code=verify_code.lower()
+	loca_code=request.session['verify_code']
+	data={}
+	# 判断验证码
+	if len(verify_code) != 5:
+		data['msg'] = '验证码错误'
+		data['status'] = 0
+		return HttpResponse(json.dumps(data))
+	if  loca_code !=verify_code:
+		data['msg']='验证码错误！'
+		data['status']=0
+		return HttpResponse(json.dumps(data))
+	else:
+		data['msg']='验证码正确！'
+		data['status']=1
+		return HttpResponse(json.dumps(data))

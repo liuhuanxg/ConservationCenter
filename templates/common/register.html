@@ -24,25 +24,69 @@
 <div class="wrap">
     <img src="{% static 'images/res-log.png' %}" alt="" style="display: block;margin: auto;margin-bottom: 20px">
     <div class="cont">
-        <form action="{% url 'register' %}" role="form" method="post">
+        <form action="{% url 'register' %}" role="form" method="post" id="zc_form">
             {% csrf_token %}
             <div class="form-group">
                 <label>用户名</label>
-                <input type="text" class="form-control" placeholder="请输入用户名" name="name" required>
+                <input type="text" class="form-control" placeholder="请输入用户名" name="name" required id="username">
             </div>
             <div class="form-group">
                 <label>密码</label>
-                <input type="password" class="form-control" placeholder="请输入密码" name="password" required>
+                <input type="password" class="form-control" placeholder="请输入密码" name="password" required id="password">
             </div>
             <div class="form-group code">
-                <input type="password" class="form-control" placeholder="请输入验证码">
-                <p></p>
-                <a href="javascript:;" style="display: block;margin-left: 180px">看不清？换一张</a>
+                <input type="text" class="form-control" placeholder="请输入验证码" id="verify_code_input">
+                <p><img src="{% url 'verify_code'%}" alt="验证码" id="verify_code"></p>
+                <a href="" style="display: block;margin-left: 180px"><span onclick="reload_code()" >看不清？换一张</span></a>
             </div>
-            <button class="btn" type="submit">注册</button>
+            <button class="btn" type="button" onclick="check_code()">注册</button>
             <a href="{% url 'login' %}">登录</a>
         </form>
     </div>
 </div>
+
+<script>
+    //更换验证码
+    function reload_code() {
+        var temp=new Date().getTime();
+        $('#verify_code').attr('src',"{% url 'verify_code' %}?t="+temp)
+    }
+
+    //ajax提交操作
+    function check_code() {
+        var verify_code=$('#verify_code_input').val();
+        var token=$('input[name=csrfmiddlewaretoken]').val();
+        if (verify_code.length !=5){
+            alert('验证码长度必须为5位！');
+            return false
+        }
+        var username=$('#username').val();
+        var passwd=$('#password').val();
+        if (username ==''){
+            alert('用户名不可为空！');
+            return false
+        }
+        if (passwd==''){
+            alert('密码不可为空！');
+            return false
+        }
+        $.ajax({
+            url:'{% url "checked_code" %}',
+            data:{verify_code:verify_code,csrfmiddlewaretoken:token},
+            dataType:'json',
+            type:'post',
+            anync:false,
+            success:function (data) {
+                console.log(data);
+                if (data.status==0){
+                    alert(data.msg);
+                }else {
+                     $('#zc_form').submit();
+                }
+             }
+            });
+    }
+</script>
+
 </body>
 </html>

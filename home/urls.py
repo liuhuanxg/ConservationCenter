@@ -21,4 +21,6 @@ urlpatterns = [
 	path('pay_goods/',views.pay_goods,name='pay_goods'),
 	path('do_pay_goods/',views.do_pay_goods,name='do_pay_goods'),
 	path('return_url/',views.return_url,name='return_url'),
+	path('verify_code/',views.verify_code,name='verify_code'),
+	path('checked_code/',views.checked_code,name='checked_code'),
 ]
