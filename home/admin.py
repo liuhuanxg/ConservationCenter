@@ -9,6 +9,7 @@ class AnimalsAdmin(admin.ModelAdmin):
 	search_fields = ('name','type','age','sex')
 	list_display_links = ('name', 'colored_status')
 	exclude = ('image',)
+	ordering = ('is_activate',)
 	def get_readonly_fields(self, request, obj=None):
 		if obj:
 			if obj.is_activate == 0:
