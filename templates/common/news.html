@@ -15,7 +15,7 @@
     <div class="main clearfix" style=" padding-top:13px; padding-bottom:30px;">
         <div class="kiohh"><img src="{% static ''%}images/xhdts.png"></div>
         <ul class="xinwend">
-            {% for news in news_list %}
+            {% for news in pagedata %}
             <li class="clearfix">
                 <b>{{ news.modify_time }}</b>
                 <span>
@@ -30,10 +30,20 @@
         </ul>
         <div style="width:100%; height:60px;"></div>
         <div class="scott" id="neirong">
+             {% if pagedata.has_previous %}
             <span>共1记录</span><span class="disabled">
-            <a href="#">«上一页</a></span>
-            <a href="">1</a>
-            <a href="#">下一页»</a>
+            <a href="?p={{ p|add:-1}}">«上一页</a></span>
+            {% endif %}
+        {% for  i in page_list %}
+            {% if p == i %}
+            <a href="">{{ p }}</a>
+        {% else %}
+            <a href="?p={{ i }}">{{ i }}</a>
+        {% endif %}
+        {% endfor %}
+         {% if pagedata.has_next %}
+             <a href="?p={{ p|add:1}}">下一页»</a>
+        {% endif %}
         </div>
     </div>
     <div style="width:100%; height:33px;"></div>

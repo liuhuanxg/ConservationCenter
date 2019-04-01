@@ -12,6 +12,7 @@ from io import BytesIO
 import json
 import random
 import hashlib
+from django.core.paginator import Paginator
 
 #加密
 def encryption(pwd):
@@ -28,6 +29,24 @@ def check_user(func):
 		else:
 			return HttpResponseRedirect(reverse('login'))
 	return inner
+
+def page(r,data,pagenum,path,**kwargs):
+	paginator = Paginator(data, pagenum)
+	p = int(r.GET.get('p', 1))
+	pagedata = paginator.page(p)
+	pagecount = paginator.num_pages
+	pagerange = paginator.page_range
+	if p < 1:
+		p = 1
+	if p > pagecount:
+		p = pagecount
+	if p <= 5:
+		page_list = pagerange[:10]
+	elif p + 5 > pagecount:
+		page_list = pagerange[-10:]
+	else:
+		page_list = pagerange[p - 5:p + 4]
+	return render(r, path, {'pagedata': pagedata, 'page_list': page_list, 'p': p})
 
 #首页
 def index(request):
@@ -62,7 +81,8 @@ def about_us(request):
 #新闻动态
 def news(request):
 	news_list=News.objects.all()
-	return render(request, 'common/news.html',{'news_list':news_list})
+	# return render(request, 'common/news.html',{'news_list':news_list})
+	return page(request,news_list,1,'common/news.html')
 
 #线上义卖
 def goods(request):
