@@ -19,7 +19,7 @@
                 <li class="clearfix">
                     <a href="{% url 'goods_detail' goods.id %}"><img src="{% static goods.image.url %}"></a>
                     <b>{{ goods.name }}<span  style="color: red">{{ goods.price }}￥</span></b>
-                    <a href="javascript:;" class="ckxq">购买</a>
+                    <a href="{% url 'pay_goods' %}?g_id={{ goods.id }}" class="ckxq">购买</a>
                 </li>
                 {% endfor %}
             </ul>
