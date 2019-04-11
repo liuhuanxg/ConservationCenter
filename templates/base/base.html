@@ -39,6 +39,7 @@
     <div class="nav">
     <ul>
         <li><a href="{% url 'index' %}" class="hover">首　　页</a></li>
+        <li><a href="{% url 'news' %}">新闻动态</a></li>
         <li style="position: relative">
             <a href="javascript:;">爱心救助</a>
             <div class="det" >
@@ -47,11 +48,10 @@
                 <p><a href="{% url 'map' %}">救助中心</a></p>
             </div>
         </li>
-        <li><a href="{% url 'about_us'%}">关于我们</a></li>
-        <li><a href="{% url 'news' %}">新闻动态</a></li>
         <li><a href="{% url 'goods' %}">线上义卖</a></li>
-        <li><a href="{% url 'contribute' %}">我要捐赠</a></li>
         <li><a href="{% url 'volunteer' %}">志愿者申请</a></li>
+        <li><a href="{% url 'about_us'%}">关于我们</a></li>
+        <li><a href="{% url 'contribute' %}">我要捐赠</a></li>
         <li><a href="{% url 'login' %}">登录/注册</a></li>
     </ul>
 </div>
