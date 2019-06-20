@@ -188,4 +188,4 @@ class Orders(models.Model):
 			return format_html(
 				'<span style="color:{};">{}</span>', color_code, '已付款',
 			)
-	pay.short_description = u'是否收货'
+	pay.short_description = u'是否付款'

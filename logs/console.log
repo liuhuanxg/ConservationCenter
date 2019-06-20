@@ -1,0 +1,93 @@
+nohup: ignoring input
+[20/Jun/2019 21:49:06] "GET /detail/1 HTTP/1.1" 200 5083
+[20/Jun/2019 21:49:09] "GET /detail/1 HTTP/1.1" 200 5083
+[20/Jun/2019 21:49:10] "GET /detail/1 HTTP/1.1" 200 5083
+[20/Jun/2019 21:49:11] "GET /detail/1 HTTP/1.1" 200 5083
+/root/workspace/ConservationCenter/home/views.py:34: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'home.models.News'> QuerySet.
+  paginator = Paginator(data, pagenum)
+[20/Jun/2019 21:49:13] "GET /news/ HTTP/1.1" 200 8457
+[20/Jun/2019 21:49:13] "GET /static/css/css.css HTTP/1.1" 200 2971
+[20/Jun/2019 21:49:14] "GET /static/css/pagination.css HTTP/1.1" 200 29002
+[20/Jun/2019 21:49:14] "GET /static/css/validate.css HTTP/1.1" 200 1642
+[20/Jun/2019 21:49:14] "GET /static/images/xhdts.png HTTP/1.1" 200 2155
+[20/Jun/2019 21:49:14] "GET /static/news/201511021610185584.png HTTP/1.1" 200 287879
+[20/Jun/2019 21:49:22] "GET /news/?p=2 HTTP/1.1" 200 10700
+[20/Jun/2019 21:49:22] "GET /static/news/9184686fd3ae4de9b6ca2cd8bdbf3fe8.jpg HTTP/1.1" 200 110712
+[20/Jun/2019 21:49:25] "GET /news/?p=3 HTTP/1.1" 200 7434
+[20/Jun/2019 21:49:25] "GET /static/news/0.jpg HTTP/1.1" 200 49272
+[20/Jun/2019 21:49:29] "GET /about_us/ HTTP/1.1" 200 5488
+[20/Jun/2019 21:49:29] "GET /static/images/xxx7.png HTTP/1.1" 200 1832
+[20/Jun/2019 21:49:29] "GET /static/images/gougou.png HTTP/1.1" 200 110317
+[20/Jun/2019 21:50:32] "GET /adopt/ HTTP/1.1" 200 5111
+[20/Jun/2019 21:50:32] "GET /static/images/zxczxc8.png HTTP/1.1" 200 49227
+[20/Jun/2019 21:50:35] "GET /static/images/x10.png HTTP/1.1" 200 486880
+[20/Jun/2019 21:50:40] "GET /about_us/ HTTP/1.1" 200 5488
+[20/Jun/2019 21:50:43] "GET /login/ HTTP/1.1" 200 2035
+[20/Jun/2019 21:50:48] "GET / HTTP/1.1" 200 9234
+[20/Jun/2019 21:50:48] "GET /static/images/pic09.png HTTP/1.1" 404 1676
+[20/Jun/2019 21:50:48] "GET /static/images/xiaoz.png HTTP/1.1" 404 1676
+[20/Jun/2019 21:50:48] "GET /static/images/pic10.png HTTP/1.1" 404 1676
+[20/Jun/2019 21:50:52] "GET /about_us/ HTTP/1.1" 200 5488
+[20/Jun/2019 21:50:54] "GET /volunteer/ HTTP/1.1" 200 5905
+[20/Jun/2019 21:50:56] "GET /static/js/bootstrapValidator.js HTTP/1.1" 200 325921
+[20/Jun/2019 21:50:56] "GET /adopt_center/ HTTP/1.1" 200 4182
+[20/Jun/2019 21:51:04] "GET /admin HTTP/1.1" 301 0
+[20/Jun/2019 21:51:04] "GET /admin/ HTTP/1.1" 302 0
+[20/Jun/2019 21:51:04] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 1864
+[20/Jun/2019 21:51:04] "GET /static/admin/css/base.css HTTP/1.1" 200 16106
+[20/Jun/2019 21:51:04] "GET /static/admin/css/login.css HTTP/1.1" 200 1203
+[20/Jun/2019 21:51:04] "GET /static/admin/css/responsive.css HTTP/1.1" 200 17894
+[20/Jun/2019 21:51:04] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[20/Jun/2019 21:51:04] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 81348
+[20/Jun/2019 21:51:04] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 80304
+[20/Jun/2019 21:51:06] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 1998
+[20/Jun/2019 21:51:06] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 82564
+[20/Jun/2019 21:51:17] "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+[20/Jun/2019 21:51:17] "GET /admin/ HTTP/1.1" 200 8927
+[20/Jun/2019 21:51:17] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 412
+[20/Jun/2019 21:51:17] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[20/Jun/2019 21:51:17] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[20/Jun/2019 21:51:26] "GET /admin/auth/user/ HTTP/1.1" 200 7978
+[20/Jun/2019 21:51:26] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6170
+[20/Jun/2019 21:51:26] "GET /admin/jsi18n/ HTTP/1.1" 200 7684
+[20/Jun/2019 21:51:26] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 363
+[20/Jun/2019 21:51:26] "GET /static/admin/js/core.js HTTP/1.1" 200 7134
+[20/Jun/2019 21:51:26] "GET /static/admin/js/actions.js HTTP/1.1" 200 6502
+[20/Jun/2019 21:51:26] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6897
+[20/Jun/2019 21:51:26] "GET /static/admin/js/urlify.js HTTP/1.1" 200 8729
+[20/Jun/2019 21:51:26] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1538
+[20/Jun/2019 21:51:26] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[20/Jun/2019 21:51:26] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+[20/Jun/2019 21:51:26] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[20/Jun/2019 21:51:27] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 258648
+[20/Jun/2019 21:51:28] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 128820
+[20/Jun/2019 21:51:28] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[20/Jun/2019 21:51:28] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[20/Jun/2019 21:51:39] "GET /admin/ HTTP/1.1" 200 8927
+[20/Jun/2019 21:51:41] "GET /admin/home/orders/ HTTP/1.1" 200 9235
+[20/Jun/2019 21:51:41] "GET /admin/jsi18n/ HTTP/1.1" 200 7684
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): home.
+Run 'python manage.py migrate' to apply them.
+June 20, 2019 - 21:49:02
+Django version 2.0.5, using settings 'ConservationCenter.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+[20/Jun/2019 21:54:01] "GET /admin/home/orders/ HTTP/1.1" 200 9235
+[20/Jun/2019 21:54:01] "GET /admin/jsi18n/ HTTP/1.1" 200 7684
+[20/Jun/2019 21:54:14] "GET /admin/home/orders/15/change/ HTTP/1.1" 200 7913
+[20/Jun/2019 21:54:14] "GET /admin/jsi18n/ HTTP/1.1" 200 7684
+[20/Jun/2019 21:54:14] "GET /static/admin/css/forms.css HTTP/1.1" 200 8173
+[20/Jun/2019 21:54:14] "GET /static/admin/js/change_form.js HTTP/1.1" 200 712
+[20/Jun/2019 21:54:14] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 495
+[20/Jun/2019 21:54:14] "GET /static/admin/css/widgets.css HTTP/1.1" 200 10340
+[20/Jun/2019 21:54:20] "GET /admin/home/orders/ HTTP/1.1" 200 9235
+[20/Jun/2019 21:54:27] "GET /admin/home/orders/16/change/ HTTP/1.1" 200 7913
+[20/Jun/2019 21:54:27] "GET /admin/jsi18n/ HTTP/1.1" 200 7684
+[20/Jun/2019 21:54:29] "GET /admin/home/orders/ HTTP/1.1" 200 9235
+[20/Jun/2019 21:54:31] "GET /admin/home/orders/14/change/ HTTP/1.1" 200 7860
+[20/Jun/2019 21:54:31] "GET /admin/jsi18n/ HTTP/1.1" 200 7684
+[20/Jun/2019 21:54:35] "GET /admin/home/orders/ HTTP/1.1" 200 9235
