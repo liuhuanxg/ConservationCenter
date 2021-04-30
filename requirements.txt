@@ -5,4 +5,4 @@ Pillow==5.4.1
 pyasn1==0.4.5
 pycrypto==2.6.1
 pytz==2018.9
-rsa==4.0
+rsa==4.7
