@@ -1,5 +1,5 @@
 alipay-sdk-python==3.2.0
-Django==2.0.5
+Django==2.2.24
 mysqlclient==1.4.1
 Pillow==5.4.1
 pyasn1==0.4.5
